@@ -13,10 +13,9 @@ export default function Board() {
   ];
   let [player, setPlayer] = useState("X");
   const fieldList = document.querySelectorAll(".field");
-  let playerTag = document.querySelector("#player-tag");
+  const playerTag = document.querySelector("#player-tag");
 
-  const xColor = "red";
-  const oColor = "blue";
+  const color = { x: "orange", o: "violet" };
 
   function BoardClicked(e) {
     const target = e.target;
@@ -26,25 +25,26 @@ export default function Board() {
   }
 
   function addToBoard(target, player) {
+    let playerTag = document.querySelector("#player-tag");
     if (player === "X") {
       target.innerHTML = player;
-      target.style.color = xColor;
+      target.style.color = color.x;
       setPlayer("O");
-      playerTag.style.color = oColor;
+      playerTag.style.color = color.o;
     } else {
       target.innerHTML = player;
-      target.style.color = oColor;
+      target.style.color = color.o;
       setPlayer("X");
-      playerTag.style.color = xColor;
+      playerTag.style.color = color.x;
     }
   }
 
   function resetBoard() {
     fieldList.forEach((item) => {
-      console.log(item.innerHTML);
       item.innerHTML = "";
     });
     setPlayer("X");
+    playerTag.style.color = color.x;
   }
 
   return (
