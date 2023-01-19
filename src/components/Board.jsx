@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Board() {
   const winningPattern = [
@@ -50,18 +50,24 @@ export default function Board() {
     }
   }
 
+  useEffect(() => {
+    checkForWin(xList, "x");
+  });
+
+  useEffect(() => {
+    checkForWin(oList, "o");
+  });
+
   function addToBoard(target, player) {
     let playerTag = document.querySelector("#player-tag");
     if (player === "X" && target.innerHTML === "") {
       setX(xList.concat(target.id));
-      checkForWin(xList, "x");
       target.innerHTML = player;
       target.style.color = color.x;
       setPlayer("O");
       playerTag.style.color = color.o;
     } else if (target.innerHTML === "") {
       setO(oList.concat(target.id));
-      checkForWin(oList, "o");
       target.innerHTML = player;
       target.style.color = color.o;
       setPlayer("X");

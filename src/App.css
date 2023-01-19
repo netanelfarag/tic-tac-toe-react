@@ -37,7 +37,7 @@
   font-family: "Nunito", sans-serif;
   font-size: 3.5rem;
   /* box-shadow: 0px 0px 5px 0px #ffffff; */
-  transition: all 0.2s;
+  transition: 0.2s ease;
 }
 
 .player {
@@ -80,5 +80,6 @@ button {
 
   .field:hover {
     box-shadow: 0px 0px 30px 0px #ffffff;
+    scale: 1.1;
   }
 }
