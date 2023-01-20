@@ -78,8 +78,17 @@ button {
     scale: 1.2;
   }
 
-  .field:hover {
+  .f-hover:hover {
     box-shadow: 0px 0px 30px 0px #ffffff;
     scale: 1.1;
   }
+}
+
+.win-style {
+  border-radius: 5px;
+}
+
+.win-field {
+  background: cyan;
+  scale: 1.2;
 }

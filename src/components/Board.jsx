@@ -22,6 +22,7 @@ export default function Board() {
 
   let gameOver = false;
   let winner = "";
+  let winList = [];
 
   // winningPattern.forEach((item) => {
   // const win = item.every((element) => {
@@ -36,17 +37,31 @@ export default function Board() {
       if (win) {
         gameOver = true;
         winner = playerWon;
-        document.getElementById("test").innerHTML = playerWon;
+        winList = item;
         return win;
       }
+    });
+    if (gameOver) {
+      showWinner(winList);
+    }
+  }
+
+  function showWinner(winList) {
+    fieldList.forEach((item) => {
+      item.classList.add("win-style");
+      item.classList.remove("f-hover");
+    });
+    winList.forEach((item) => {
+      setTimeout(() => {
+        document.getElementById(item).classList.add("win-field");
+      }, 300);
     });
   }
 
   function BoardClicked(e) {
-    const target = e.target;
-    addToBoard(target, player);
-    if (gameOver) {
-      console.log("winner is: ", winner);
+    if (!gameOver) {
+      const target = e.target;
+      addToBoard(target, player);
     }
   }
 
@@ -83,6 +98,14 @@ export default function Board() {
     playerTag.style.color = color.x;
     setX([]);
     setO([]);
+    gameOver = false;
+    winner = "";
+    fieldList.forEach((item) => {
+      item.classList.remove("win-style");
+      item.classList.remove("win-field");
+      item.classList.add("f-hover");
+    });
+    winList = [];
   }
 
   return (
@@ -92,15 +115,15 @@ export default function Board() {
         Current Player Is: <span id="player-tag">{player}</span>
       </div>
       <div className="board" onClick={BoardClicked}>
-        <div className="field" id="0"></div>
-        <div className="field" id="1"></div>
-        <div className="field" id="2"></div>
-        <div className="field" id="3"></div>
-        <div className="field" id="4"></div>
-        <div className="field" id="5"></div>
-        <div className="field" id="6"></div>
-        <div className="field" id="7"></div>
-        <div className="field" id="8"></div>
+        <div className="field f-hover" id="0"></div>
+        <div className="field f-hover" id="1"></div>
+        <div className="field f-hover" id="2"></div>
+        <div className="field f-hover" id="3"></div>
+        <div className="field f-hover" id="4"></div>
+        <div className="field f-hover" id="5"></div>
+        <div className="field f-hover" id="6"></div>
+        <div className="field f-hover" id="7"></div>
+        <div className="field f-hover" id="8"></div>
       </div>
       <button onClick={resetBoard}>Restart</button>
     </div>
